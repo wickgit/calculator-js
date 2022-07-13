@@ -39,7 +39,9 @@ function operate(operation, a, b) {
     }
 }
 function displayNumbers(e) {
-    if (evaluationResult) display.innerHTML = '';
+    if (evaluationResult) {
+        display.innerHTML = '';
+    }
     if (e.target.className == 'play_button') {
         display.innerHTML += `${e.target.textContent}`;
         if (!isOperatorOn) {
@@ -53,6 +55,7 @@ function displayNumbers(e) {
 
 function displayOperators(e) {
     if (e.target.className == 'operator_button') {
+        operation = e.target.textContent
         if (firstNumber && !isOperatorOn) {
             display.innerHTML = '';
             operation = e.target.textContent;
@@ -73,6 +76,7 @@ function displayResult(e) {
         firstNumber = '';
         secondNumber = '';
         isOperatorOn = false;
+        firstNumber = evaluationResult;
     }
 }
 
