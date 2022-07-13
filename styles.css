@@ -1,0 +1,34 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 600px;
+    height: 600px;
+}
+
+.container {
+    display: flex;
+}
+
+.display {
+    padding: 40px 60px;
+}
+
+.opeators {
+    display: flex;
+}
+
+.play_button, .operator {
+    padding: 5px 10px;
+}
