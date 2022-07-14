@@ -4,13 +4,14 @@ const operators = document.querySelector('.operators');
 const evaluate = document.getElementById('result');
 const clearButton = document.getElementById('clear');
 const displayUpper = document.querySelector('.display_upper');
+const dotButton = document.getElementById('dot');
 
 let firstNumber = '';
 let secondNumber = '';
-let allOperations = '';
 let operation = '';
 let isOperatorOn = false;
 let evaluationResult;
+let currentNumber;
 
 function add(a, b) { return a + b; }
 
@@ -54,16 +55,15 @@ function addToDisplay(str) {
 }
 
 function displayNumbers(e) {
-    if (evaluationResult) {
-        display.innerHTML = '';
-    }
     if (e.target.className == 'play_button') {
-        // display.innerHTML += `${e.target.textContent}`;
+        if (evaluationResult) display.innerHTML = '';
         if (!isOperatorOn) {
+            currentNumber = 'first';
             display.innerHTML += `${e.target.textContent}`;
             firstNumber += e.target.textContent;
         } else {
             if (operation) {
+                currentNumber = 'second';
                 secondNumber += e.target.textContent;
                 display.innerHTML += `${e.target.textContent}`;
             }
@@ -104,7 +104,7 @@ function displayOperators(e) {
     }
 }
 
-function displayResult(e) {
+function displayResult() {
     if (firstNumber && secondNumber) {
         secondNumber = Number(secondNumber);
         evaluationResult = operate(operation, firstNumber, secondNumber);
@@ -118,7 +118,18 @@ function displayResult(e) {
     }
 }
 
+function addDot() {
+    if (display.textContent.indexOf('.') === -1) {
+        if (currentNumber == 'first') {
+            firstNumber += '.';
+        } else if (currentNumber == 'second') {
+            secondNumber += '.';
+        }
+    }
+}
+
 container.addEventListener('click', displayNumbers);
 operators.addEventListener('click', displayOperators);
 evaluate.addEventListener('click', displayResult);
 clearButton.addEventListener('click', clear);
+dotButton.addEventListener('click', addDot)
