@@ -5,6 +5,7 @@ const evaluate = document.getElementById('result');
 const clearButton = document.getElementById('clear');
 const displayUpper = document.querySelector('.display_upper');
 const dotButton = document.getElementById('dot');
+const removeButton = document.getElementById('remove');
 
 let firstNumber = '';
 let secondNumber = '';
@@ -54,19 +55,19 @@ function addToDisplay(str) {
     displayUpper.textContent += str + ' ';
 }
 
+
 function displayNumbers(e) {
     if (e.target.className == 'play_button') {
-        console.log(evaluationResult);
         // if (evaluationResult) display.innerHTML = '';
         if (!isOperatorOn) {
             currentNumber = 'first';
-            display.innerHTML += `${e.target.textContent}`;
             firstNumber += e.target.textContent;
+            display.innerHTML = firstNumber;
         } else {
             if (operation) {
                 currentNumber = 'second';
                 secondNumber += e.target.textContent;
-                display.innerHTML += `${e.target.textContent}`;
+                display.innerHTML = secondNumber;
             }
         }
     }
@@ -131,8 +132,20 @@ function addDot() {
     }
 }
 
+function removeCharacter() {
+    console.log(currentNumber);
+    if (currentNumber === 'first') {
+        firstNumber = firstNumber.slice(0, -1);
+        display.innerHTML = firstNumber;
+    } else {
+        secondNumber = secondNumber.slice(0, -1);
+        display.innerHTML = secondNumber;
+    }
+}
+
 container.addEventListener('click', displayNumbers);
 operators.addEventListener('click', displayOperators);
 evaluate.addEventListener('click', displayResult);
 clearButton.addEventListener('click', clear);
-dotButton.addEventListener('click', addDot)
+dotButton.addEventListener('click', addDot);
+removeButton.addEventListener('click', removeCharacter)

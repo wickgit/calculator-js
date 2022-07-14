@@ -22,8 +22,12 @@ body {
 }
 
 .display {
-    padding: 40px 60px;
+    padding: 20px 10px;
     font-size: 20px;
+}
+
+.display_upper {
+    padding: 5px;
 }
 
 .opeators {
