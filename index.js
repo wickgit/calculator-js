@@ -58,11 +58,15 @@ function displayNumbers(e) {
         display.innerHTML = '';
     }
     if (e.target.className == 'play_button') {
-        display.innerHTML += `${e.target.textContent}`;
+        // display.innerHTML += `${e.target.textContent}`;
         if (!isOperatorOn) {
+            display.innerHTML += `${e.target.textContent}`;
             firstNumber += e.target.textContent;
         } else {
-            secondNumber += e.target.textContent;
+            if (operation) {
+                secondNumber += e.target.textContent;
+                display.innerHTML += `${e.target.textContent}`;
+            }
         }
     }
     console.log('First number: ', firstNumber, 'Second number:', secondNumber, 'Operation:', operation);
@@ -70,7 +74,9 @@ function displayNumbers(e) {
 
 function displayOperators(e) {
     if (e.target.className == 'operator_button') {
+        // Choose operation if firstName is empty
         if (!firstNumber && !secondNumber) return;
+        // Choose an operation if firstNumber is not empty
         if (firstNumber && !isOperatorOn) {
             display.innerHTML = '';
             operation = e.target.textContent;
@@ -80,6 +86,8 @@ function displayOperators(e) {
             firstNumber = Number(firstNumber)
             console.log(operation);
         }
+
+        // if two numbers exists and user press operation button, program evaluate the result
         if (firstNumber && secondNumber) {
             secondNumber = Number(secondNumber);
             evaluationResult = operate(operation, firstNumber, secondNumber);
