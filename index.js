@@ -56,7 +56,8 @@ function addToDisplay(str) {
 
 function displayNumbers(e) {
     if (e.target.className == 'play_button') {
-        if (evaluationResult) display.innerHTML = '';
+        console.log(evaluationResult);
+        // if (evaluationResult) display.innerHTML = '';
         if (!isOperatorOn) {
             currentNumber = 'first';
             display.innerHTML += `${e.target.textContent}`;
@@ -91,8 +92,10 @@ function displayOperators(e) {
         if (firstNumber && secondNumber) {
             secondNumber = Number(secondNumber);
             evaluationResult = operate(operation, firstNumber, secondNumber);
-            display.innerHTML = `${evaluationResult}`;
             console.log('відповідь', evaluationResult, 'Operation:', operation);
+            display.innerHTML = '';
+            addToDisplay('clear')
+            addToDisplay(evaluationResult);
             operation = '';
             firstNumber = '';
             secondNumber = '';
