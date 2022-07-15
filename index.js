@@ -6,6 +6,7 @@ const clearButton = document.getElementById('clear');
 const displayUpper = document.querySelector('.display_upper');
 const dotButton = document.getElementById('dot');
 const removeButton = document.getElementById('remove');
+const innerMain = document.querySelector('.inner_main');
 
 let firstNumber = '';
 let secondNumber = '';
@@ -21,7 +22,7 @@ function substract(a, b) { return a - b; }
 function multiply(a, b) { return a * b; }
 
 function divide(a, b) {
-    if (b == 0) return 'Can\'t divide by zero';
+    if (b == 0) return 'ERROR';
     return a / b;
 }
 
@@ -57,18 +58,15 @@ function addToDisplay(str) {
 
 
 function displayNumbers(e) {
-    if (e.target.className == 'play_button') {
-        // if (evaluationResult) display.innerHTML = '';
-        if (!isOperatorOn) {
-            currentNumber = 'first';
-            firstNumber += e.target.textContent;
-            display.innerHTML = firstNumber;
-        } else {
-            if (operation) {
-                currentNumber = 'second';
-                secondNumber += e.target.textContent;
-                display.innerHTML = secondNumber;
-            }
+    if (!isOperatorOn) {
+        currentNumber = 'first';
+        firstNumber += e.target.textContent;
+        display.innerHTML = firstNumber;
+    } else {
+        if (operation) {
+            currentNumber = 'second';
+            secondNumber += e.target.textContent;
+            display.innerHTML = secondNumber;
         }
     }
     console.log('First number: ', firstNumber, 'Second number:', secondNumber, 'Operation:', operation);
@@ -98,7 +96,6 @@ function displayOperators(e) {
             addToDisplay('clear')
             addToDisplay(evaluationResult);
             operation = '';
-            firstNumber = '';
             secondNumber = '';
             isOperatorOn = true;
             firstNumber = evaluationResult;
@@ -143,9 +140,13 @@ function removeCharacter() {
     }
 }
 
-container.addEventListener('click', displayNumbers);
-operators.addEventListener('click', displayOperators);
-evaluate.addEventListener('click', displayResult);
-clearButton.addEventListener('click', clear);
-dotButton.addEventListener('click', addDot);
-removeButton.addEventListener('click', removeCharacter)
+function identifyNeededEventListener(e) {
+    if (e.target.className == 'play_button') displayNumbers(e);
+    else if (e.target.className == 'operator_button') displayOperators(e);
+    else if (e.target.id == 'result') displayResult();
+    else if (e.target.id == 'clear') clear();
+    else if (e.target.id == 'dot') addDot();
+    else if (e.target.id == 'remove') removeCharacter();
+}
+
+innerMain.addEventListener('click', identifyNeededEventListener);
