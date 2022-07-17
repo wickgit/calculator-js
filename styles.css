@@ -26,13 +26,35 @@ body {
     flex: 1;
 }
 
+.output {
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+}
+
 .display {
-    padding: 20px 10px;
-    font-size: 20px;
+    display: flex;
+    font-size: 2rem;
+    height: 60px;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.output {
+    display: flex;
+    flex-direction: column;
+    background-color:aliceblue;
+    border: 1px solid black;
 }
 
 .display_upper {
-    padding: 5px;
+    display: flex;
+    font-size: 1.5rem;
+    height: 40px;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .calculator-grid {
@@ -45,6 +67,7 @@ body {
     background-color: aliceblue;
     cursor: pointer;
     font-size: 2rem;
+    border: 1px solid black;
 }
 
 .double-size {

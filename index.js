@@ -95,6 +95,7 @@ function displayOperators(e) {
             display.innerHTML = '';
             addToDisplay('clear')
             addToDisplay(evaluationResult);
+            addToDisplay(operation);
             operation = '';
             secondNumber = '';
             isOperatorOn = true;
