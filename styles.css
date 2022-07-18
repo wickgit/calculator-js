@@ -69,6 +69,10 @@ body {
     border: 3px solid black;
 }
 
+.calculator-grid > button:hover{
+    background-color: rgb(255, 255, 255, 0.70);
+}
+
 .double-size {
     grid-column: span 2;
 }

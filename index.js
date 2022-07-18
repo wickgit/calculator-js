@@ -119,7 +119,7 @@ function displayResult() {
         operation = '';
         firstNumber = '';
         secondNumber = '';
-        display.innerHTML = `${evaluationResult}`; 
+        display.textContent = '';
         firstNumber = evaluationResult;
     }
 }
