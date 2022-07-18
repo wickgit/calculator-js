@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
 * {
     box-sizing: border-box;
 }
@@ -9,21 +11,16 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
-
-.main {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 600px;
-    height: 600px;
-    background-color: cornflowerblue;
+    font-family: 'Lato', sans-serif;
 }
 
 .inner_main {
     display: flex;
     flex-direction: column;
-    flex: 1;
+    padding: 20px;
+    background-color:dimgrey;
+    border-radius: 5px;
+    border: 4px solid black;
 }
 
 .output {
@@ -34,7 +31,7 @@ body {
 
 .display {
     display: flex;
-    font-size: 2rem;
+    font-size: 2.5rem;
     height: 60px;
     width: 100%;
     align-items: center;
@@ -45,7 +42,8 @@ body {
     display: flex;
     flex-direction: column;
     background-color:aliceblue;
-    border: 1px solid black;
+    border: 3px solid black;
+    margin-bottom: 2px;
 }
 
 .display_upper {
@@ -61,13 +59,14 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 80px);
     grid-template-rows: repeat(5, 80px);
+    gap: 2px;
 }
 
 .calculator-grid > button{
     background-color: aliceblue;
     cursor: pointer;
     font-size: 2rem;
-    border: 1px solid black;
+    border: 3px solid black;
 }
 
 .double-size {
