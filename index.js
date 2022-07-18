@@ -84,7 +84,6 @@ function displayOperators(e) {
             operation = e.target.textContent;
             isOperatorOn = true;
             addToDisplay(firstNumber);
-            addToDisplay(operation);
             firstNumber = Number(firstNumber);
             currentNumber = 'second';
             console.log(operation);
@@ -97,7 +96,7 @@ function displayOperators(e) {
             display.innerHTML = '';
             addToDisplay('clear')
             addToDisplay(evaluationResult);
-            addToDisplay(operation);
+            // addToDisplay(operation);
             operation = '';
             currentNumber = 'second';
             secondNumber = '';
@@ -106,7 +105,8 @@ function displayOperators(e) {
             console.log('Result: ', evaluationResult, 'Operation:', operation);
         }
         
-        operation = e.target.textContent
+        operation = e.target.textContent;
+        addToDisplay(operation);
     }
 }
 
