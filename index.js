@@ -13,7 +13,8 @@ let secondNumber = '';
 let operation = '';
 let isOperatorOn = false;
 let evaluationResult;
-let currentNumber;
+let currentNumber = 'first';
+let previousNumber;
 
 function add(a, b) { return a + b; }
 
@@ -46,6 +47,7 @@ function clear() {
     display.innerHTML = '';
     isOperatorOn = false;
     displayUpper.textContent = '';
+    currentNumber = 'first';
 }
 
 function addToDisplay(str) {
@@ -58,13 +60,12 @@ function addToDisplay(str) {
 
 
 function displayNumbers(e) {
-    if (!isOperatorOn) {
-        currentNumber = 'first';
+    console.log(currentNumber)
+    if (currentNumber == 'first') {
         firstNumber += e.target.textContent;
         display.innerHTML = firstNumber;
     } else {
-        if (operation) {
-            currentNumber = 'second';
+        if(operation) {
             secondNumber += e.target.textContent;
             display.innerHTML = secondNumber;
         }
@@ -76,6 +77,7 @@ function displayOperators(e) {
     if (e.target.className == 'operator_button') {
         // Choose operation if firstName is empty
         if (!firstNumber && !secondNumber) return;
+        if (firstNumber && !secondNumber && operation) return;
         // Choose an operation if firstNumber is not empty
         if (firstNumber && !isOperatorOn) {
             display.innerHTML = '';
@@ -83,26 +85,28 @@ function displayOperators(e) {
             isOperatorOn = true;
             addToDisplay(firstNumber);
             addToDisplay(operation);
-            firstNumber = Number(firstNumber)
+            firstNumber = Number(firstNumber);
+            currentNumber = 'second';
             console.log(operation);
         }
-
+        
         // if two numbers exists and user press operation button, program evaluate the result
         if (firstNumber && secondNumber) {
             secondNumber = Number(secondNumber);
             evaluationResult = operate(operation, firstNumber, secondNumber);
-            console.log('відповідь', evaluationResult, 'Operation:', operation);
             display.innerHTML = '';
             addToDisplay('clear')
             addToDisplay(evaluationResult);
             addToDisplay(operation);
             operation = '';
+            currentNumber = 'second';
             secondNumber = '';
             isOperatorOn = true;
             firstNumber = evaluationResult;
+            console.log('Result: ', evaluationResult, 'Operation:', operation);
         }
-        operation = e.target.textContent
         
+        operation = e.target.textContent
     }
 }
 
