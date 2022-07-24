@@ -131,6 +131,7 @@ function addDot() {
         } else if (currentNumber == 'second') {
             secondNumber += '.';
         }
+        display.textContent += '.';
     }
 }
 
